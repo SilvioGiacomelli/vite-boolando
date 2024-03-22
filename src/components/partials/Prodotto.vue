@@ -1,23 +1,27 @@
 <script>
-  export default {      
-    props:{
-      product: Object,
-    },
-
-
-methods: {
-  getImagePath(img){
-    return new URL (`../../assets/img/${img}`, import.meta.url).href
+export default {      
+  props:{
+    product: Object,
+  },
+  data() {
+    return {
+      // Aggiunge una variabile per controllare quale immagine mostrare
+      isHovering: false,
+    };
+  },
+  methods: {
+    getImagePath(img){
+      return new URL (`../../assets/img/${img}`, import.meta.url).href
     }
-   }
-  };
-
+  }
+};
 </script>
+
 <template>
   <div class="card">
-    <div class="box">
-      <img :src="getImagePath(product.frontImage)" alt="">
-      <img class="hide" :src="getImagePath(product.backImage)" alt="">
+    <div class="box" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
+      <img class="show" :src="getImagePath(product.frontImage)" alt="" v-show="!isHovering">
+      <img class="hide" :src="getImagePath(product.backImage)" alt="" v-show="isHovering">
       <div class="cuore"><h4>&#9829;</h4></div>
       <div class="sconto"><h4>sconto</h4></div>
       <div class="sostenibilità"><h4>sostenibilità</h4></div>
@@ -27,6 +31,7 @@ methods: {
     <p class="prezzo">Prezzo</p>
   </div>
 </template>
+
 
 
 <style lang="scss" scoped>
@@ -66,7 +71,5 @@ img{
   font-size: 2rem;
   padding: 5px;
 }
-.hide{
-  display: none;
-}
+
 </style>
