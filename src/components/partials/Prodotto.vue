@@ -19,16 +19,21 @@ export default {
 
 <template>
   <div class="card">
-    <div class="box" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-      <img class="show" :src="getImagePath(product.frontImage)" alt="" v-show="!isHovering">
-      <img class="hide" :src="getImagePath(product.backImage)" alt="" v-show="isHovering">
+    <div class="box" 
+    @mouseenter="isHovering = true" 
+    @mouseleave="isHovering = false">
+      <img class="show" :src="getImagePath(product.frontImage)" v-show="!isHovering">
+      <img class="hide" :src="getImagePath(product.backImage)" v-show="isHovering">
       <div class="cuore"><h4>&#9829;</h4></div>
-      <div class="sconto"><h4>sconto</h4></div>
-      <div class="sostenibilità"><h4>sostenibilità</h4></div>
+      <div 
+        v-for="sconto in product.badges"
+        :key="sconto"
+        :class="sconto.type">{{ sconto.value }}
+      </div>
     </div>
-    <p class="marca">Marca</p>
-    <p class="stile"><h2>Stile</h2></p>
-    <p class="prezzo">Prezzo</p>
+    <p class="marca">{{ product.brand }}</p>
+    <p class="stile">{{ product.name }}</p>
+    <p class="prezzo">{{ product.price }}</p>
   </div>
 </template>
 
@@ -46,7 +51,7 @@ img{
 .box{
   position: relative;
 }
-.sostenibilità{
+.tag{
   position: absolute;
   bottom:20px;
   left: 50px;
@@ -55,7 +60,7 @@ img{
   color: white;
   margin-left: 10px;
 }
-.sconto {
+.discount {
   position: absolute;
   bottom: 20px;
   left: 0;

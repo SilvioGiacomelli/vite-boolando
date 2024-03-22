@@ -19,7 +19,7 @@ data() {
       <Prodotto 
       v-for="item in db.products"
       :key="item.id"
-      :product="item"
+      :product='item'
       />
     </div>
   </main>
