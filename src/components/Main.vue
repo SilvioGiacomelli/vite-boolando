@@ -1,21 +1,26 @@
 <script>
 import Prodotto from './partials/Prodotto.vue';
+import db from '../data/db.json'
 export default {
   components:{
     Prodotto
+  },
+data() {
+  return {
+    db
   }
+},
 }
 </script>
 
 <template>
   <main>
     <div class="container">
-      <Prodotto />
-      <Prodotto />
-      <Prodotto />
-      <Prodotto />
-      <Prodotto />
-      <Prodotto />
+      <Prodotto 
+      v-for="item in db.products"
+      :key="item.id"
+      :product="item"
+      />
     </div>
   </main>
 </template>
