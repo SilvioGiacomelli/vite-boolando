@@ -1,5 +1,16 @@
 <script>
-export default {}
+import {headerMenu} from '../data/active'
+
+export default {
+  computed:{
+    leftMenu() {
+      return headerMenu.left
+    },
+    rightMenu() {
+      return headerMenu.right
+    },
+  }
+}
 </script>
 
 <template>
@@ -7,17 +18,25 @@ export default {}
     <div class="jumbo">
       <div>
         <ul>
-          <li><a href="#">Donna</a></li>
-          <li><a href="#">Uomo</a></li>
-          <li><a href="#">Bambini</a></li>
+          <li 
+          v-for="(item,index) in leftMenu"
+          :key="`l-${index}`">
+          <a 
+          :href="item.href">{{ item.text }}</a>
+        </li>         
         </ul>
       </div>
       <img src="../assets/img/boolean-logo.png">
       <div>
         <ul>
-          <li><a href="#"><i class="fa-solid fa-user"></i></a></li>
-          <li><a href="#"><i class="fa-regular fa-heart"></i></a></li>
-          <li><a href="#"><i class="fa-solid fa-bag-shopping"></i></a></li>
+          <li 
+          v-for="(item, index) in rightMenu"
+          :key="`r-${index}`">
+            <a 
+            href="#"
+            v-html="`${item.text}`"
+            ></a>
+          </li>
        </ul>
      </div>
     </div>
