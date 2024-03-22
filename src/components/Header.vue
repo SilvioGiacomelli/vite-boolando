@@ -26,7 +26,9 @@ export default {
         </li>         
         </ul>
       </div>
-      <img src="../assets/img/boolean-logo.png">
+      <img
+      class="logo" 
+      src="../assets/img/boolean-logo.png">
       <div>
         <ul>
           <li 
@@ -71,4 +73,8 @@ ul{
   height: 100%;
 }
 
+.logo{
+  max-width: 50%;
+  max-height: 50%;
+}
 </style>
